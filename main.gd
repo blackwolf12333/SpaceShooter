@@ -27,6 +27,7 @@ var state = "game"
 
 func _ready():
 	set_process(true)
+	get_node("sounds").set_polyphony(3)
 
 func _process(delta):
 	if state == "menu":
@@ -91,7 +92,7 @@ func _process(delta):
 							rockArray.remove(rockID)
 							remove_and_delete_child(get_node(laser))
 							laserArray.remove(laserID)
-							get_node("rock_sound").play("smallexplosion1")
+							get_node("sounds").play("smallexplosion1")
 				laserID+=1
 			
 			var shipPos = get_node("ship").get_pos()
@@ -125,7 +126,7 @@ func fire():
 	var laser_instance = get_node("laser").duplicate()
 	laser_instance.set_name("laser"+str(laserCount))
 	add_child(laser_instance)
-	var sound = get_node("laser_sound")
+	var sound = get_node("sounds")
 	sound.play("laser")
 	
 	var laserPos = get_node("laser"+str(laserCount)).get_pos()
